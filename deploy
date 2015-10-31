@@ -1,0 +1,27 @@
+#!/bin/sh
+dir=$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)
+echo "dir: $dir"
+
+ssh_host="isu17a"
+
+rsync -avzcn --delete --exclude-from=rsync-exclude-from ${dir}/ ${ssh_host}:infra
+
+ssh -t -t $ssh_host <<-EOS
+  #cd /home/isucon/webapp/go
+  #go build -o app
+
+  ##sudo service nginx restart
+  ##sudo systemctl restart isuxi.go
+
+  #sudo service nginx stop
+  #sudo systemctl stop isuxi.go
+  #sudo rm -f /run/isuxi.go.sock
+  #sudo systemctl start isuxi.go
+  #sudo chmod 777 /run/isuxi.go.sock
+  #sudo service nginx start
+  ##sudo service mysql restart
+
+  #mycon -e 'show variables like "query_cache%";'
+  #mycon -e 'show variables like "thread_cache%";'
+  exit
+EOS
