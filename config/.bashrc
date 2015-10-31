@@ -44,5 +44,10 @@ alias l='ls -GF --color=auto'
 
 export EDITOR=vim
 
+export REPO=$HOME/infra
+export PATH=$REPO/bin:$PATH
+#alias mycon='mysql -h localhost -P 3306 -u root isucon5q'
+#alias mypro='myprofiler -host=localhost -user=root -limit=30 -dump=$HOME/logs/mysql/rawquery.sql.`date +%Y-%m-%d_%H-%M-%S`'
+alias summary='python $REPO/bin/summary_log.py $HOME/logs/nginx/`ls $HOME/logs/nginx | tail -1`'
 
 # vim: set ts=4 sw=0 sts=0 expandtab :
