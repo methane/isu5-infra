@@ -4,7 +4,7 @@ echo "dir: $dir"
 
 ssh_host="isu17a"
 
-rsync -avzcn --delete --exclude-from=rsync-exclude-from ${dir}/ ${ssh_host}:infra
+rsync -avzc --delete --exclude-from=rsync-exclude-from ${dir}/ ${ssh_host}:infra
 
 ssh -t -t $ssh_host <<-EOS
   #cd /home/isucon/webapp/go
@@ -23,5 +23,12 @@ ssh -t -t $ssh_host <<-EOS
 
   #mycon -e 'show variables like "query_cache%";'
   #mycon -e 'show variables like "thread_cache%";'
+
+
+  #sudo service nginx start
+
   exit
 EOS
+
+
+
